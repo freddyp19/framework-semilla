@@ -1,0 +1,251 @@
+.urbangreymenu{
+	width: 340px; /*width of menu*/
+}
+
+.urbangreymenu .headerbar{
+	font: bolder 14px sans-serif, arial, verdana;
+	color: white;
+	/*background: #DC143C url(arrowstop.gif) no-repeat 8px 6px; /*last 2 values are the x and y coordinates of bullet image*/
+	margin-bottom: -20px; /*bottom spacing between header and rest of content*/
+	text-transform: uppercase;
+	padding: -10px 0 -20px 12px; /*12px is left indentation of header text*/
+	line-height: 45px;
+	text-align: center;
+}
+
+.urbangreymenu .headerbar a{
+	text-decoration: none;
+	color: #fff;
+	display: block;
+}
+
+.urbangreymenu ul{
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	margin-bottom: -15px; /*bottom spacing between each UL and rest of content*/
+}
+
+.urbangreymenu ul li{
+	padding-bottom: -5px; /*bottom spacing between menu items*/
+}
+
+.urbangreymenu ul li a{
+	font: 14px sans-serif, arial, verdana;
+	color: black;
+	background: transparent;
+	display: block;
+	padding: 5px 0;
+	line-height: 10px;
+	padding-left: 50px; /*link text is indented 12px*/
+	text-decoration: none;
+	/*text-align: center;*/
+}
+
+.urbangreymenu ul li a:visited{
+	color: black;
+}
+
+.urbangreymenu ul li a:hover{ /*hover state CSS*/
+	color: #B22222;
+	background: #fff;
+}
+/*SE AGREGAN LAS CLASS DE LAS BARRAS DE FORMULARIO PRINCIPAL    OJOOOOOOOOO    21/05/2012*/
+/*.tramites{
+	background-image: url(../imagenes/botones/boton_vacio_tramites_administrativos_pequeno.JPG);
+	background-position: 0px 0px;
+}
+.licencias{
+	background-image: url(../imagenes/botones/licencia.JPG);
+	background-position: 0px 0px;
+}
+.manuales{
+	background-image: url(../imagenes/botones/imagesmanuales_78.jpeg);
+	background-position: 0px 0px;
+}*/
+
+.modulo2{
+	background-image: url(../imagenes/botones/boton_vacio_pequeno_1.JPG);
+}
+
+/*.correspondencia{
+	background-image: url(../imagenes/botones/boton_vacio_pequeno.JPG);
+}
+
+.llamadas{
+	background-image: url(../imagenes/botones/boton_vacio_llamadas_telefonicas_pequeno.JPG);
+}
+
+.agenda{
+	background-image: url(../imagenes/botones/boton_vacio_agenda_personal_pequeno.JPG);
+}
+
+.administracion{
+	background-image: url(../imagenes/botones/boton_vacio_administracion_pequeno.JPG);
+}*/
+
+.recuadro {
+	background-color:#ffffcc;
+	text-align:left;
+	font-family:verdana;
+	border-width:0;
+	padding:5px;
+	border: 1px dotted #ffaa00;
+}
+
+.Contenedor-Texto-Menu:hover{  
+	background-image:url(../imagenes/flecha.gif);
+	color:#CC0000;
+}
+
+.Contenedor-Texto-Menu{
+	color:#333333;
+}
+
+.Contenedor-Texto-Menu{   
+	width:159px; 
+	margin:5px 0px 0px 8px;
+}
+
+.Contenedor-Texto-Menu{
+	border-style:none;
+	padding:0px;
+	margin: 0px;
+}
+
+.Contenedor-Texto-Menu{
+	float:left;
+	background-repeat:no-repeat; 
+}
+
+.Contenedor-Texto-Menu{
+	font-size : 8pt; 
+	font-family: Arial, sans-serif;
+	text-decoration:none;
+	border-style:none; 
+	text-align:left;    
+	display:inline;
+}
+
+.Contenedor-Texto-Menu1{  
+	color:#333333;
+}
+
+.Contenedor-Texto-Menu1{
+	width:159px; 
+	margin:5px 0px 0px 8px;
+}
+
+.Contenedor-Texto-Menu1 {
+	border-style:none;
+	padding:0px;
+	margin: 0px;
+}
+
+.Contenedor-Texto-Menu1 {
+	float:left;
+	background-repeat:no-repeat; 
+}
+
+.Contenedor-Texto-Menu1 {    
+	font-size : 8pt; 
+	font-family: Arial, sans-serif;
+	text-decoration:none;
+	border-style:none; 
+	text-align:left;    
+	display:inline;
+}
+
+.Titulo-Aplicacion {    
+	font-family: Arial, sans-serif;
+	font-weight:bold;
+	color:#CC0000;
+	font-size:12px;
+}
+
+table.adminlist {
+	background-color: #FFFFFF;
+	margin: 0px;
+	padding: 0px;
+	border: 1px solid #ddd;
+	border-spacing: 0px;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+table.adminlist th {
+	margin: 0px;
+	padding: 6px 4px 2px 4px;
+	height: 25px;
+	background: url(../imagenes/background.jpg);
+	background-repeat: repeat;
+	font-size: 13px;
+	color: #000;
+}
+
+table.adminlist td {
+	border-bottom: 1px solid #e5e5e5;
+	padding: 4px;
+}
+
+.style19 {
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: bold;
+	color: #999999;
+}
+
+.style15 {
+	font-size: 12px;
+	font-family: Arial;
+}
+
+.innerb {
+	OVERFLOW: auto;
+	HEIGHT: 200px;
+}
+
+.estilo_a{
+	color:#b22222;
+	font-size:13px;
+	font-family:sans-serif, arial, verdana;
+	text-decoration:none;
+}
+
+.estilo_a:hover{
+	color:#f08080;
+}
+.esping {word-spacing: 1em;}
+
+/*
+.opcionsistema,
+a.toplink:link,
+a.toplink:visited,
+a.toplink:active,
+a.toplink:hover,
+.toplinkCurrent,
+a.toplinkCurrent:link,
+a.toplinkCurrent:visited,
+a.toplinkCurrent:active,
+a.toplinkCurrent:hover { 
+	font: 12px/16px Verdana, Geneva, Tahoma, Helvetica, sans-serif;
+	font-weight: bold;
+	color: #2176B1;
+	text-decoration: none;
+	cursor: pointer;
+} 
+a.opcionsistema:hover,
+.toplinkCurrent:hover { 
+	color: #09578D;
+	text-decoration: underline;
+	cursor: pointer;
+}*/
+
+.opcionsistema, a{
+	cursor: pointer;
+}
+
+.opcionsistema:hover, a{
+	cursor: default;
+}
+

@@ -1,0 +1,82 @@
+/* CSS Document Base de Framework Semilla */
+.btn_actualizar{
+background-image: url(../imagenes/btn_actualizar.png);
+width: 30px;
+height: 30px;
+cursor:pointer;
+float:left;
+}
+
+.btn_eliminar{
+background-image: url(../imagenes/btn_eliminar.png);
+width: 30px;
+height: 30px;
+cursor:pointer;
+float:left;
+}
+.error{
+	FONT-WEIGHT: normal; 
+    FONT-SIZE: 10px; 
+	COLOR:#FF0000;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	font-weight:600;
+	font-style:inherit;
+	TEXT-DECORATION: none;
+}
+.boton {
+	BORDER-RIGHT: #8088b7 1px solid; 
+	cursor: hand; 
+	PADDING-RIGHT: 1px; 
+	BORDER-TOP: #8088b7 1px solid; 
+	PADDING-LEFT: 1px; FONT-WEIGHT: normal; 
+	FONT-SIZE: 11px; 
+	PADDING-BOTTOM: 1px; 
+	BORDER-LEFT: #8088b7 1px solid;
+	COLOR: #29326d; 
+	PADDING-TOP: 2px; 
+	BORDER-BOTTOM: #8088b7 1px solid; 
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; 
+	BACKGROUND-COLOR: #ffffff; 
+	TEXT-DECORATION: none; 
+}
+.boton:hover {
+	BACKGROUND-COLOR: #e7e7e7; cursor: hand;  cursor:pointer;
+}
+.boton:visited {
+	COLOR: #29326d; TEXT-DECORATION: none; cursor:hand;  cursor:pointer;
+}
+.text_campos {
+	BACKGROUND-COLOR: #f5f5fa; BORDER-BOTTOM-COLOR: #e2e1ec; BORDER-BOTTOM-STYLE: solid; BORDER-LEFT-COLOR: #e2e1ec; BORDER-LEFT-STYLE: solid; BORDER-RIGHT-COLOR: #e2e1ec; BORDER-RIGHT-STYLE: solid; BORDER-TOP-COLOR: #e2e1ec; BORDER-TOP-STYLE: solid; COLOR: #003399; FONT-FAMILY: Verdana, Arial; FONT-SIZE: 12px; FONT-WEIGHT: bold
+}
+
+.text_campos:hover{ BACKGROUND-COLOR: #FFFFCC; }
+.text_campos:focus{	BACKGROUND-COLOR: #FFFFCC; }
+
+.tabla { border-bottom-color: #8088b7; 
+		 border-left-color:#8088b7; 
+		 border-right-color:#8088b7; 
+		 border-top-color:#8088b7;
+         cellspacing="0"
+  		 cellpadding="0"
+}
+th
+{
+    text-align: center;
+    border: solid 1px #113300;
+    background: #EEFFEE;
+}
+.grupoCampos {
+	BORDER-RIGHT: #b0c4de 3px solid; 
+	BORDER-TOP: #b0c4de 3px solid; 
+	BORDER-LEFT: #b0c4de 3px solid; 
+	COLOR: #8088b7; 
+	BORDER-BOTTOM: #b0c4de 3px solid; 
+	BACKGROUND-COLOR: #ffffff;
+	WHITE: 700px;
+}
+
+.grupoCampos td{padding:4px 4px 4px 4px}
+
+.tituloGrupoCampos {
+	FONT-WEIGHT: bold; COLOR: #29326d; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; POSITION: relative; BACKGROUND-COLOR: #b0c4de; TEXT-DECORATION: none
+}

@@ -1,0 +1,16 @@
+	if($this->base_datos->motor=="mysql")
+	{
+	$tabla2=$tabla;
+	}
+	else
+	{
+	$schema_tabla=explode(".", $tabla);
+	$schema=$schema_tabla[0];
+	$tabla2=$schema_tabla[1];
+	}
+
+on crear_vista(
+
+me quede en las vistas
+y encontre que no me genera las dependencias de las tablas
+supongo no lee los constrains

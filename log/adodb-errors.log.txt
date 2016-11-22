@@ -1,0 +1,12 @@
+(2014-09-22 07:15:07) mysql error: [1045: Access denied for user 'root'@'localhost' (using password: NO)] in CONNECT(localhost, '****', '****', bd_prueba)
+(2014-09-22 07:15:52) mysql error: [1045: Access denied for user 'root'@'localhost' (using password: YES)] in CONNECT(localhost, '****', '****', bd_prueba)
+(2014-09-22 18:22:24) mysql error: [1054: Unknown column 'id_perfil' in 'where clause'] in EXECUTE(" select * from tbl_modulos where  id_perfil=1 ")
+(2014-09-22 18:22:28) mysql error: [1054: Unknown column 'id_perfil' in 'where clause'] in EXECUTE(" select * from tbl_modulos where  id_perfil=1 ")
+(2014-09-22 18:23:12) mysql error: [1052: Column 'usuario' in from clause is ambiguous] in EXECUTE(" select * from tbl_archivos join tbl_empresas_clientes using(id_empresa_cliente) join tbl_usuarios using(usuario) limit 0,50")
+(2014-09-22 18:23:26) mysql error: [1052: Column 'usuario' in from clause is ambiguous] in EXECUTE(" select * from tbl_archivos join tbl_empresas_clientes using(id_empresa_cliente) join tbl_usuarios using(usuario) limit 0,50")
+(2014-09-22 18:25:58) mysql error: [1052: Column 'usuario' in from clause is ambiguous] in EXECUTE(" select * from tbl_archivos join tbl_empresas_clientes using(id_empresa_cliente) join tbl_usuarios using(usuario) limit 0,50")
+(2014-09-22 18:28:52) mysql error: [1052: Column 'usuario' in from clause is ambiguous] in EXECUTE(" select * from tbl_archivos join tbl_empresas_clientes using(id_empresa_cliente) join tbl_usuarios using(usuario) limit 0,50")
+(2014-10-02 20:01:06) mysql error: [1045: Access denied for user 'root'@'localhost' (using password: YES)] in CONNECT(localhost, '****', '****', bd_prueba)
+(2014-10-02 20:10:26) mysql error: [1146: Table 'bd_pruebas.tbl_modulos' doesn't exist] in EXECUTE(" select * from tbl_modulos join tbl_modulos_perfiles using(id_modulo) where  id_perfil=1 ")
+(2010-01-01 05:59:17) mysql error: [2002: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión.
+] in CONNECT(localhost, '****', '****', bd_ejemplo)

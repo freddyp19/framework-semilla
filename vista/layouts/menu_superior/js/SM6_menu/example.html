@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>SmartMenus 6 Example - Simple Style 2</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
+
+
+
+
+<style type="text/css">
+<!--
+/* The "clearFix" class is used for clearing the main menu items because they
+   are left-floated for horizontal main menus and we have to clear them if our main
+   menu is relatively positioned (as in this example) so that the main menu box
+   takes its place correctly on the page. We have to apply this class to the parent
+   DIV of the root UL of our menu tree. Please take a look at section 6.1 in the
+   SmartMenus User's Manual for a detailed explanation if you like. */
+
+.clearFix:after { /* for modern browsers */
+    content:".";
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden;
+}
+.clearFix { /* for IE7/Win */
+    min-height:1px;
+}
+* html .clearFix { /* for IE5-6/Win */
+    height:1px;
+}
+* html>body .clearFix { /* for IE5/Mac */
+    height:auto;
+    display:inline-block;
+}
+
+/* The following rule is a fix for a CSS specifity bug in IE. Without this fix
+   IE incorrectly applies the left red border to any NOROLL item on hover/focus.
+   If you don't use any NOROLL items, you will not need this rule at all. */
+
+#Menu1 a.NOROLL {
+	border-color:#fff !important;
+}
+-->
+</style>
+
+
+
+
+<!-- SmartMenus 6 config and script core files -->
+<script type="text/javascript" src="c_config.js"></script>
+<script type="text/javascript" src="c_smartmenus.js"></script>
+<!-- SmartMenus 6 config and script core files -->
+
+
+
+
+</head>
+
+<body style="margin:0;padding:2em;padding-right:0;background:#fff;color:#000;">
+
+
+
+
+<!-- Sample menu definition -->
+<div class="clearFix" style="width:45em;padding:0;background:#FFFFFF;border:1px solid;border-color:#999999;">
+<ul id="Menu1" class="MM">
+  <li><a href="http://www.smartmenus.org/">Home</a></li>
+  <li><a href="http://www.smartmenus.org/about/">About</a>
+    <ul>
+      <li><a href="http://www.smartmenus.org/about/introduction/">Introduction to SmartMenus</a></li>
+      <li><a href="http://www.smartmenus.org/about/compatibility/">Browser compatibility</a></li>
+      <li><a href="http://vadikom.com/about/#vasil-dinkov">The author</a></li>
+      <li><a href="http://www.smartmenus.org/about/promote/">SmartMenus buttons</a></li>
+      <li><a href="http://www.smartmenus.org/archive/">Older archived versions</a></li>
+    </ul>
+  </li>
+  <li><a href="http://www.smartmenus.org/samples6/">Online Samples</a></li>
+  <li><a href="http://www.smartmenus.org/download/">Download</a></li>
+  <li><a href="http://www.smartmenus.org/license/">Licensing</a>
+    <ul>
+      <li><a href="http://www.smartmenus.org/license/types/">License</a></li>
+      <li><a href="http://www.smartmenus.org/license/purchase/">Purchase</a></li>
+      <li><a href="http://www.smartmenus.org/license/eula/">EULA</a></li>
+    </ul>
+  </li>
+  <li><a href="http://www.smartmenus.org/support/">Support</a>
+    <ul>
+      <li><a href="http://www.smartmenus.org/support/email/">Direct email support</a></li>
+      <li><a href="http://www.smartmenus.org/forum/">Forum</a></li>
+      <li><a href="http://www.smartmenus.org/support/manual/">User's Manual</a></li>
+    </ul>
+  </li>
+  <li><a href="http://vadikom.com/">Company</a>
+    <ul>
+      <li><a href="http://vadikom.com/about/">About Vadikom</a></li>
+      <li><a href="http://vadikom.com/projects/">Projects</a>
+        <ul>
+          <li><a href="http://www.smartmenus.org/vadikom/products/free-scripts/">Free scripts</a></li>
+        </ul>
+      </li>
+      <li><a href="http://vadikom.com/services/">Services</a></li>
+      <li><a href="http://www.smartmenus.org/vadikom/privacy/">Privacy policy</a></li>
+    </ul>
+  </li>
+  <li><a href="#">Sub test</a>
+    <ul>
+      <li><a class="NOLINK">Dummy item</a></li>
+      <li><a class="NOLINK">Dummy item</a></li>
+      <li><a class="NOLINK">Longer dummy item</a>
+        <ul>
+          <li><a class="NOLINK">Test test test</a></li>
+          <li><a class="NOLINK">Sub test</a>
+            <ul>
+              <li><a class="NOLINK">A pretty long text to force the MaxWidth setting of 300 pixels for the sub menus</a></li>
+              <li><a class="NOLINK">Test test test test test test test test</a></li>
+              <li><a class="NOLINK">Test test test test test test test test</a></li>
+              <li><a class="NOLINK">Another sub level</a>
+                <ul>
+                  <li><a class="NOLINK">Another dummy item</a></li>
+                  <li><a class="NOLINK">Another dummy item</a></li>
+                  <li><a class="NOLINK">Another dummy item</a></li>
+                  <li><a class="NOLINK">Another sub level</a>
+                    <ul>
+                      <li><a class="NOLINK">MinWidth</a></li>
+                      <li><a class="NOLINK">of</a></li>
+                      <li><a class="NOLINK">100 pixels</a></li>
+                      <li><a class="NOLINK">forced.</a></li>
+                    </ul>
+                  </li>
+                  <li><a class="NOLINK">Another dummy item</a></li>
+                  <li><a class="NOLINK">Another dummy item</a></li>
+                </ul>
+              </li>
+              <li><a class="NOLINK">Test test test test test test test test</a></li>
+              <li><a class="NOLINK">Test test test test test test test test</a></li>
+            </ul>
+          </li>
+          <li><a class="NOLINK">Test test test</a></li>
+          <li><a class="NOLINK NOROLL">NOROLL item</a></li>
+        </ul>
+      </li>
+      <li><a class="NOLINK">Dummy item</a></li>
+    </ul>
+  </li>
+  <li class="NOSEPARATOR"><a href="http://www.smartmenus.org/contact/">Contact</a></li>
+</ul>
+</div>
+<!-- Please leave at least one new line or white space symbol after the closing </ul>
+     tag of the root ul element of the menu tree. This will allow the browsers to init
+     the menu tree as soon as it is loaded and not wait for the page load event. -->
+
+
+
+
+<!-- =============================================================================== -->
+<!-- ================= YOU DO NOT NEED ANYTHING BELOW THIS COMMENT ================= -->
+<!-- =============================================================================== -->
+
+
+
+
+<div style="padding-top:2em;width:60em;font:75% verdana,arial,helvetica,sans-serif;line-height:1.55em;">
+
+<h1 style="margin-top:0;font-size:1.83em;">Simple Style 2</h1>
+
+<p>This sample demonstrates a menu with a simple clean style.</p>
+
+</div>
+
+
+
+
+</body>
+</html>

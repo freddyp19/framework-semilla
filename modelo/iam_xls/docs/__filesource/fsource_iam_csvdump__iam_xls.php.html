@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos  -->
+			<title>File Source for iam_xls.php</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+											</head>
+		<body>
+						<h1>Source for file iam_xls.php</h1>
+<p>Documentation is available at <a href="../iam_csvdump/_xls_iam_xls_php.html">iam_xls.php</a></p>
+<div class="src-code">
+<pre><ol><li><a name="a1"></a><span class="src-php">&lt;?</span></li>
+<li><a name="a2"></a>&nbsp;</li>
+<li><a name="a3"></a><span class="src-doc">/**</span></li>
+<li><a name="a4"></a><span class="src-doc"> *  IAM_XLS A class for generating an XLS file. Alternatively, it can be used for performing a query dump and sending it to the browser as an Excel File</span></li>
+<li><a name="a5"></a><span class="src-doc"> *  </span><span class="src-doc-coretag">@package</span><span class="src-doc">    iam_xls</span></li>
+<li><a name="a6"></a><span class="src-doc"> */</span></li>
+<li><a name="a7"></a>&nbsp;</li>
+<li><a name="a8"></a> <span class="src-doc">/**</span></li>
+<li><a name="a9"></a><span class="src-doc"> *  IAM_XLS A class for generating an XLS file. Alternatively, it can be used for performing a query dump and sending it to the browser as an Excel File</span></li>
+<li><a name="a10"></a><span class="src-doc"> *  </span><span class="src-doc-coretag">@author</span><span class="src-doc">     Iván Ariel Melgrati &lt;phpclasses@imelgrat.mailshell.com&gt;</span></li>
+<li><a name="a11"></a><span class="src-doc"> *  </span><span class="src-doc-coretag">@package</span><span class="src-doc">    iam_csvdump</span></li>
+<li><a name="a12"></a><span class="src-doc"> *  </span><span class="src-doc-coretag">@version</span><span class="src-doc"> 1.0</span></li>
+<li><a name="a13"></a><span class="src-doc"> *</span></li>
+<li><a name="a14"></a><span class="src-doc"> *   IAM_XLS A class for generating an XLS file. Alternatively, it can be used for performing a query dump and sending it to the browser as an Excel File</span></li>
+<li><a name="a15"></a><span class="src-doc"> *</span></li>
+<li><a name="a16"></a><span class="src-doc"> *   Browser and OS detection for appropriate handling of download.</span></li>
+<li><a name="a17"></a><span class="src-doc"> *</span></li>
+<li><a name="a18"></a><span class="src-doc"> *   Requires PHP v 4.0+ and MySQL 3.23+. Some portions taken from the DzaiaCuck's sqltoexcel class &lt;dzaiacuck@ig.com.br&gt;</span></li>
+<li><a name="a19"></a><span class="src-doc"> *</span></li>
+<li><a name="a20"></a><span class="src-doc"> *   This library is free software; you can redistribute it and/or</span></li>
+<li><a name="a21"></a><span class="src-doc"> *   modify it under the terms of the GNU Lesser General Public</span></li>
+<li><a name="a22"></a><span class="src-doc"> *   License as published by the Free Software Foundation; either</span></li>
+<li><a name="a23"></a><span class="src-doc"> *   version 2 of the License, or (at your option) any later version.</span></li>
+<li><a name="a24"></a><span class="src-doc"> *</span></li>
+<li><a name="a25"></a><span class="src-doc"> *   This library is distributed in the hope that it will be useful,</span></li>
+<li><a name="a26"></a><span class="src-doc"> *   but WITHOUT ANY WARRANTY; without even the implied warranty of</span></li>
+<li><a name="a27"></a><span class="src-doc"> *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</span></li>
+<li><a name="a28"></a><span class="src-doc"> *   Lesser General Public License for more details.</span></li>
+<li><a name="a29"></a><span class="src-doc"> */</span></li>
+<li><a name="a30"></a><span class="src-key">class </span><a href="../iam_csvdump/IAM_XLS.html">IAM_XLS</a></li>
+<li><a name="a31"></a><span class="src-sym">{</span></li>
+<li><a name="a32"></a>     <span class="src-doc">/**</span></li>
+<li><a name="a33"></a><span class="src-doc">     * </span><span class="src-doc-coretag">@var </span><span class="src-doc-type">string </span><span class="src-doc-var">$xls_data </span><span class="src-doc">Variable that holds the XLS File</span></li>
+<li><a name="a34"></a><span class="src-doc">     * </span><span class="src-doc-coretag">@access</span><span class="src-doc"> private</span></li>
+<li><a name="a35"></a><span class="src-doc">     */</span></li>
+<li><a name="a36"></a>     <span class="src-key">var </span><a href="../iam_csvdump/IAM_XLS.html#var$xls_data">$xls_data</a><span class="src-sym">;</span></li>
+<li><a name="a37"></a>&nbsp;</li>
+<li><a name="a38"></a>     <span class="src-doc">/**</span></li>
+<li><a name="a39"></a><span class="src-doc">     * </span><span class="src-doc-coretag">@var </span><span class="src-doc-type">string </span><span class="src-doc-var">$xlsName </span><span class="src-doc">Output Filename. No extension should be given as the class, as the class automatically attaches the XLS extension</span></li>
+<li><a name="a40"></a><span class="src-doc">     * </span><span class="src-doc-coretag">@access</span><span class="src-doc"> private</span></li>
+<li><a name="a41"></a><span class="src-doc">     */</span></li>
+<li><a name="a42"></a>     <span class="src-key">var </span><a href="../iam_csvdump/IAM_XLS.html#var$xlsName">$xlsName</a><span class="src-sym">;</span></li>
+<li><a name="a43"></a>&nbsp;</li>
+<li><a name="a44"></a>    <span class="src-doc">/**</span></li>
+<li><a name="a45"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@access</span><span class="src-doc"> public</span></li>
+<li><a name="a46"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@param </span><span class="src-doc"> </span><span class="src-doc-type">String </span><span class="src-doc-var">$filename </span><span class="src-doc">Output Filename. No extension should be given as the class, as the class automatically attaches the XLS extension</span></li>
+<li><a name="a47"></a><span class="src-doc">    */</span></li>
+<li><a name="a48"></a>     <span class="src-key">function </span><a href="../iam_csvdump/IAM_XLS.html#methodIAM_XLS">IAM_XLS</a><span class="src-sym">(</span><span class="src-var">$filename</span>=<span class="src-str">'spreadsheet'</span><span class="src-sym">)</span></li>
+<li><a name="a49"></a>     <span class="src-sym">{</span></li>
+<li><a name="a50"></a>          <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#var$xls_data">xls_data</a>   = <span class="src-str">&quot;&quot;</span><span class="src-sym">;</span></li>
+<li><a name="a51"></a>          <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#var$xlsName">xlsName</a> = <span class="src-var">$filename</span><span class="src-sym">;</span></li>
+<li><a name="a52"></a>          <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#method_excelStart">_excelStart</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a53"></a>     <span class="src-sym">}</span></li>
+<li><a name="a54"></a>&nbsp;</li>
+<li><a name="a55"></a>&nbsp;</li>
+<li><a name="a56"></a>    <span class="src-doc">/**</span></li>
+<li><a name="a57"></a><span class="src-doc">    * </span><span class="src-doc-tag">@desc</span><span class="src-doc"> Writes a value to a cell in the in-memory file</span></li>
+<li><a name="a58"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@access</span><span class="src-doc"> public</span></li>
+<li><a name="a59"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@param </span><span class="src-doc-type">int </span><span class="src-doc-var">$xls_line </span><span class="src-doc">Spreadsheet row (zero-based)</span></li>
+<li><a name="a60"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@param </span><span class="src-doc-type">int </span><span class="src-doc-var">$xls_col </span><span class="src-doc">Spreadsheet column (zero-based)</span></li>
+<li><a name="a61"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@param </span><span class="src-doc-type">mixed </span><span class="src-doc-var">$value </span><span class="src-doc">Cell value (String or Numeric)</span></li>
+<li><a name="a62"></a><span class="src-doc">    */</span></li>
+<li><a name="a63"></a>     <span class="src-key">function </span><a href="../iam_csvdump/IAM_XLS.html#methodWriteValue">WriteValue</a><span class="src-sym">(</span><span class="src-var">$xls_row</span><span class="src-sym">, </span><span class="src-var">$xls_col</span><span class="src-sym">, </span><span class="src-var">$value</span><span class="src-sym">)</span></li>
+<li><a name="a64"></a>     <span class="src-sym">{</span></li>
+<li><a name="a65"></a>          <span class="src-key">if </span><span class="src-sym">(</span><a href="http://www.php.net/is_numeric">is_numeric</a><span class="src-sym">(</span><span class="src-var">$value</span><span class="src-sym">))</span></li>
+<li><a name="a66"></a>               <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#methodWriteCellNumber">WriteCellNumber</a><span class="src-sym">(</span><span class="src-var">$xls_row</span><span class="src-sym">, </span><span class="src-var">$xls_col</span><span class="src-sym">, </span><span class="src-var">$value</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a67"></a>          <span class="src-key">else</span></li>
+<li><a name="a68"></a>               <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#methodWriteCellText">WriteCellText</a><span class="src-sym">(</span><span class="src-var">$xls_row</span><span class="src-sym">, </span><span class="src-var">$xls_col</span><span class="src-sym">, </span><span class="src-var">$value</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a69"></a>     <span class="src-sym">}</span></li>
+<li><a name="a70"></a>&nbsp;</li>
+<li><a name="a71"></a>    <span class="src-doc">/**</span></li>
+<li><a name="a72"></a><span class="src-doc">    * </span><span class="src-doc-tag">@desc</span><span class="src-doc"> Generates a XLS File from an SQL Query (and outputs it to the browser)</span></li>
+<li><a name="a73"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@access</span><span class="src-doc"> public</span></li>
+<li><a name="a74"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@param </span><span class="src-doc"> </span><span class="src-doc-type">String </span><span class="src-doc-var">$query </span><span class="src-doc">Query String</span></li>
+<li><a name="a75"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@param </span><span class="src-doc"> </span><span class="src-doc-type">String </span><span class="src-doc-var">$db </span><span class="src-doc">Name of the Database</span></li>
+<li><a name="a76"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@param </span><span class="src-doc"> </span><span class="src-doc-type">String </span><span class="src-doc-var">$user </span><span class="src-doc">User to Access the Database</span></li>
+<li><a name="a77"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@param </span><span class="src-doc"> </span><span class="src-doc-type">String </span><span class="src-doc-var">$pass </span><span class="src-doc">Password to Access the Database</span></li>
+<li><a name="a78"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@param </span><span class="src-doc"> </span><span class="src-doc-type">String </span><span class="src-doc-var">$host </span><span class="src-doc">Name of the Host holding the DB</span></li>
+<li><a name="a79"></a><span class="src-doc">    */</span></li>
+<li><a name="a80"></a>     <span class="src-key">function </span><a href="../iam_csvdump/IAM_XLS.html#methodWriteSQLDump">WriteSQLDump</a><span class="src-sym">(</span><span class="src-var">$query</span><span class="src-sym">, </span><span class="src-var">$db</span><span class="src-sym">, </span><span class="src-var">$user</span>=<span class="src-str">'root'</span><span class="src-sym">, </span><span class="src-var">$pass</span>=<span class="src-str">''</span><span class="src-sym">, </span><span class="src-var">$host</span>=<span class="src-str">'localhost'</span><span class="src-sym">)</span></li>
+<li><a name="a81"></a>     <span class="src-sym">{</span></li>
+<li><a name="a82"></a>          <span class="src-var">$xls_line  </span>= <span class="src-num">0</span><span class="src-sym">;</span></li>
+<li><a name="a83"></a>          <span class="src-var">$col </span>= <span class="src-num">0</span><span class="src-sym">;</span></li>
+<li><a name="a84"></a>&nbsp;</li>
+<li><a name="a85"></a>          <span class="src-var">$link </span>= <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#method_db_connect">_db_connect</a><span class="src-sym">(</span><span class="src-var">$db</span><span class="src-sym">, </span><span class="src-var">$user</span><span class="src-sym">, </span><span class="src-var">$pass</span><span class="src-sym">, </span><span class="src-var">$host</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a86"></a>          <span class="src-key">if</span><span class="src-sym">(</span><span class="src-var">$link</span><span class="src-sym">)</span></li>
+<li><a name="a87"></a>          <span class="src-sym">{</span></li>
+<li><a name="a88"></a>               <span class="src-var">$result</span>= <span class="src-sym">@</span><a href="http://www.php.net/mysql_query">mysql_query</a><span class="src-sym">(</span><span class="src-var">$query</span><span class="src-sym">, </span><span class="src-var">$link</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a89"></a>               <span class="src-key">if</span><span class="src-sym">(</span><a href="http://www.php.net/mysql_error">mysql_error</a><span class="src-sym">(</span><span class="src-sym">)</span>!=<span class="src-str">&quot;&quot;</span><span class="src-sym">)</span></li>
+<li><a name="a90"></a>               <span class="src-sym">{</span></li>
+<li><a name="a91"></a>                    <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#methodWriteValue">WriteValue</a><span class="src-sym">(</span><span class="src-num">1</span><span class="src-sym">, </span><span class="src-num">0</span><span class="src-sym">, </span><span class="src-str">&quot;Ha ocurrido un error al consultar la base de datos: &quot;</span>.<a href="http://www.php.net/mysql_error">mysql_error</a><span class="src-sym">(</span><span class="src-sym">))</span><span class="src-sym">;</span></li>
+<li><a name="a92"></a>                    <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#methodOutputFile">OutputFile</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a93"></a>                    <span class="src-key">exit</span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a94"></a>               <span class="src-sym">}</span></li>
+<li><a name="a95"></a>&nbsp;</li>
+<li><a name="a96"></a>               <span class="src-var">$lines  </span>= <span class="src-sym">@</span><a href="http://www.php.net/mysql_num_rows">mysql_num_rows</a><span class="src-sym">(</span><span class="src-var">$result</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a97"></a>               <span class="src-var">$colums </span>= <a href="http://www.php.net/mysql_num_fields">mysql_num_fields</a><span class="src-sym">(</span><span class="src-var">$result</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a98"></a>&nbsp;</li>
+<li><a name="a99"></a>               <span class="src-key">for</span><span class="src-sym">(</span><span class="src-var">$e</span>=<span class="src-num">0</span><span class="src-sym">; </span><span class="src-var">$e </span>&lt; <span class="src-var">$colums</span><span class="src-sym">; </span><span class="src-var">$e</span>++<span class="src-sym">)</span></li>
+<li><a name="a100"></a>                    <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#methodWriteValue">WriteValue</a><span class="src-sym">(</span><span class="src-num">0</span><span class="src-sym">, </span><span class="src-var">$e</span><span class="src-sym">, </span><a href="http://www.php.net/trim">trim</a><span class="src-sym">(</span><a href="http://www.php.net/ucwords">ucwords</a><span class="src-sym">(</span><a href="http://www.php.net/str_replace">str_replace</a><span class="src-sym">(</span><span class="src-str">&quot;_&quot;</span><span class="src-sym">,</span><span class="src-str">&quot; &quot;</span><span class="src-sym">,</span><a href="http://www.php.net/mysql_field_name">mysql_field_name</a><span class="src-sym">(</span><span class="src-var">$result</span><span class="src-sym">, </span><span class="src-var">$e</span><span class="src-sym">)))))</span><span class="src-sym">;</span></li>
+<li><a name="a101"></a>&nbsp;</li>
+<li><a name="a102"></a>               <span class="src-key">for</span><span class="src-sym">(</span><span class="src-var">$col </span>= <span class="src-num">0</span><span class="src-sym">; </span><span class="src-var">$col </span>&lt; <span class="src-var">$colums</span><span class="src-sym">; </span><span class="src-var">$col</span>++<span class="src-sym">)</span></li>
+<li><a name="a103"></a>               <span class="src-sym">{</span></li>
+<li><a name="a104"></a>                   <span class="src-var">$col_name  </span>= <a href="http://www.php.net/mysql_field_name">mysql_field_name</a><span class="src-sym">(</span><span class="src-var">$result</span><span class="src-sym">, </span><span class="src-var">$col</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a105"></a>&nbsp;</li>
+<li><a name="a106"></a>                    <span class="src-key">for</span><span class="src-sym">(</span><span class="src-var">$i</span>=<span class="src-num">0</span><span class="src-sym">; </span><span class="src-var">$i </span>&lt; <span class="src-var">$lines</span><span class="src-sym">; </span><span class="src-var">$i</span>++<span class="src-sym">)</span></li>
+<li><a name="a107"></a>                   <span class="src-sym">{</span></li>
+<li><a name="a108"></a>                              <span class="src-var">$CellValue </span>= <a href="http://www.php.net/mysql_result">mysql_result</a><span class="src-sym">(</span><span class="src-var">$result</span><span class="src-sym">, </span><span class="src-var">$i</span><span class="src-sym">, </span><span class="src-var">$col_name</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a109"></a>&nbsp;</li>
+<li><a name="a110"></a>                             <span class="src-var">$xls_line </span>= <span class="src-sym">(</span><span class="src-var">$i </span>+ <span class="src-num">1</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a111"></a>&nbsp;</li>
+<li><a name="a112"></a>                             <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#methodWriteValue">WriteValue</a><span class="src-sym">(</span><span class="src-var">$xls_line</span><span class="src-sym">, </span><span class="src-var">$col</span><span class="src-sym">, </span><span class="src-var">$CellValue</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a113"></a>                   <span class="src-sym">}</span></li>
+<li><a name="a114"></a>               <span class="src-sym">}</span></li>
+<li><a name="a115"></a>          <span class="src-sym">}</span></li>
+<li><a name="a116"></a>          <span class="src-key">else</span></li>
+<li><a name="a117"></a>          <span class="src-sym">{</span></li>
+<li><a name="a118"></a>               <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#methodWriteValue">WriteValue</a><span class="src-sym">(</span><span class="src-num">1</span><span class="src-sym">, </span><span class="src-num">0</span><span class="src-sym">, </span><span class="src-str">&quot;Ha ocurrido un error al conectarse a la base de datos: &quot;</span>.<a href="http://www.php.net/mysql_error">mysql_error</a><span class="src-sym">(</span><span class="src-sym">))</span><span class="src-sym">;</span></li>
+<li><a name="a119"></a>          <span class="src-sym">}</span></li>
+<li><a name="a120"></a>          <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#methodOutputFile">OutputFile</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a121"></a>     <span class="src-sym">}</span></li>
+<li><a name="a122"></a>&nbsp;</li>
+<li><a name="a123"></a>    <span class="src-doc">/**</span></li>
+<li><a name="a124"></a><span class="src-doc">    * </span><span class="src-doc-tag">@desc</span><span class="src-doc"> Closes the XLS File and Sends it to the browser</span></li>
+<li><a name="a125"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@access</span><span class="src-doc"> public</span></li>
+<li><a name="a126"></a><span class="src-doc">    */</span></li>
+<li><a name="a127"></a>     <span class="src-key">function </span><a href="../iam_csvdump/IAM_XLS.html#methodOutputFile">OutputFile</a><span class="src-sym">(</span><span class="src-sym">)</span></li>
+<li><a name="a128"></a>     <span class="src-sym">{</span></li>
+<li><a name="a129"></a>          <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#method_excelEnd">_excelEnd</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a130"></a>&nbsp;</li>
+<li><a name="a131"></a>          <span class="src-var">$now </span>= <a href="http://www.php.net/gmdate">gmdate</a><span class="src-sym">(</span><span class="src-str">'D, d M Y H:i:s'</span><span class="src-sym">) </span>. <span class="src-str">' GMT'</span><span class="src-sym">;</span></li>
+<li><a name="a132"></a>          <span class="src-var">$USER_BROWSER_AGENT</span>= <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#method_get_browser_type">_get_browser_type</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a133"></a>&nbsp;</li>
+<li><a name="a134"></a>          <a href="http://www.php.net/header">header</a><span class="src-sym">(</span><span class="src-str">'Content-Type: ' </span>. <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#method_get_mime_type">_get_mime_type</a><span class="src-sym">(</span><span class="src-sym">))</span><span class="src-sym">;</span></li>
+<li><a name="a135"></a>          <a href="http://www.php.net/header">header</a> <span class="src-sym">( </span><span class="src-str">&quot;Content-Description: IAM Generated Excel File&quot; </span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a136"></a>          <a href="http://www.php.net/header">header</a><span class="src-sym">(</span><span class="src-str">'Expires: ' </span>. <span class="src-var">$now</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a137"></a>&nbsp;</li>
+<li><a name="a138"></a>          <span class="src-key">if </span><span class="src-sym">(</span><span class="src-var">$USER_BROWSER_AGENT </span>== <span class="src-str">'IE'</span><span class="src-sym">)</span></li>
+<li><a name="a139"></a>          <span class="src-sym">{</span></li>
+<li><a name="a140"></a>            <a href="http://www.php.net/header">header</a><span class="src-sym">(</span><span class="src-str">'Content-Disposition: inline; filename=&quot;' </span>. <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#var$xlsName">xlsName</a>.<span class="src-str">&quot;.xls&quot;</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a141"></a>            <a href="http://www.php.net/header">header</a><span class="src-sym">(</span><span class="src-str">'Cache-Control: must-revalidate, post-check=0, pre-check=0'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a142"></a>            <a href="http://www.php.net/header">header</a><span class="src-sym">(</span><span class="src-str">'Pragma: public'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a143"></a>          <span class="src-sym">}</span></li>
+<li><a name="a144"></a>          <span class="src-key">else</span></li>
+<li><a name="a145"></a>          <span class="src-sym">{</span></li>
+<li><a name="a146"></a>            <a href="http://www.php.net/header">header</a><span class="src-sym">(</span><span class="src-str">'Content-Disposition: attachment; filename=&quot;' </span>. <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#var$xlsName">xlsName</a>.<span class="src-str">&quot;.xls&quot;</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a147"></a>            <a href="http://www.php.net/header">header</a><span class="src-sym">(</span><span class="src-str">'Pragma: no-cache'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a148"></a>          <span class="src-sym">}</span></li>
+<li><a name="a149"></a>&nbsp;</li>
+<li><a name="a150"></a>          print  <span class="src-sym">(</span><span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#var$xls_data">xls_data</a><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a151"></a>     <span class="src-sym">}</span></li>
+<li><a name="a152"></a>&nbsp;</li>
+<li><a name="a153"></a>    <span class="src-doc">/**</span></li>
+<li><a name="a154"></a><span class="src-doc">    * </span><span class="src-doc-tag">@desc</span><span class="src-doc"> Writes The XLS Header to the in-memory file</span></li>
+<li><a name="a155"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@access</span><span class="src-doc"> private</span></li>
+<li><a name="a156"></a><span class="src-doc">    */</span></li>
+<li><a name="a157"></a>     <span class="src-key">function </span><a href="../iam_csvdump/IAM_XLS.html#method_excelStart">_excelStart</a><span class="src-sym">(</span><span class="src-sym">)</span></li>
+<li><a name="a158"></a>     <span class="src-sym">{</span></li>
+<li><a name="a159"></a>          <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#var$xls_data">xls_data</a> = <a href="http://www.php.net/pack">pack</a><span class="src-sym">( </span><span class="src-str">&quot;vvvvvv&quot;</span><span class="src-sym">, </span><span class="src-num">0x809</span><span class="src-sym">, </span><span class="src-num">0x08</span><span class="src-sym">, </span><span class="src-num">0x00</span><span class="src-sym">,</span><span class="src-num">0x10</span><span class="src-sym">, </span><span class="src-num">0x0</span><span class="src-sym">, </span><span class="src-num">0x0 </span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a160"></a>     <span class="src-sym">}</span></li>
+<li><a name="a161"></a>&nbsp;</li>
+<li><a name="a162"></a>    <span class="src-doc">/**</span></li>
+<li><a name="a163"></a><span class="src-doc">    * </span><span class="src-doc-tag">@desc</span><span class="src-doc"> Writes The XLS End-of-File sequence to the in-memory file</span></li>
+<li><a name="a164"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@access</span><span class="src-doc"> private</span></li>
+<li><a name="a165"></a><span class="src-doc">    */</span></li>
+<li><a name="a166"></a>     <span class="src-key">function </span><a href="../iam_csvdump/IAM_XLS.html#method_excelEnd">_excelEnd</a><span class="src-sym">(</span><span class="src-sym">)</span></li>
+<li><a name="a167"></a>     <span class="src-sym">{</span></li>
+<li><a name="a168"></a>          <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#var$xls_data">xls_data</a> .= <a href="http://www.php.net/pack">pack</a><span class="src-sym">( </span><span class="src-str">&quot;vv&quot;</span><span class="src-sym">, </span><span class="src-num">0x0A</span><span class="src-sym">, </span><span class="src-num">0x00</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a169"></a>     <span class="src-sym">}</span></li>
+<li><a name="a170"></a>&nbsp;</li>
+<li><a name="a171"></a>&nbsp;</li>
+<li><a name="a172"></a>&nbsp;</li>
+<li><a name="a173"></a>    <span class="src-doc">/**</span></li>
+<li><a name="a174"></a><span class="src-doc">    * </span><span class="src-doc-tag">@desc</span><span class="src-doc"> Writes a numeric value to a cell in the in-memory file</span></li>
+<li><a name="a175"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@access</span><span class="src-doc"> public</span></li>
+<li><a name="a176"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@param </span><span class="src-doc-type">int </span><span class="src-doc-var">$xls_row </span><span class="src-doc">Spreadsheet row (zero-based)</span></li>
+<li><a name="a177"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@param </span><span class="src-doc-type">int </span><span class="src-doc-var">$xls_col </span><span class="src-doc">Spreadsheet column (zero-based)</span></li>
+<li><a name="a178"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@param </span><span class="src-doc-type">float </span><span class="src-doc-var">$value </span><span class="src-doc">Cell value</span></li>
+<li><a name="a179"></a><span class="src-doc">    */</span></li>
+<li><a name="a180"></a>     <span class="src-key">function </span><a href="../iam_csvdump/IAM_XLS.html#methodWriteCellNumber">WriteCellNumber</a><span class="src-sym">(</span><span class="src-var">$xls_row</span><span class="src-sym">, </span><span class="src-var">$xls_col</span><span class="src-sym">, </span><span class="src-var">$value</span><span class="src-sym">)</span></li>
+<li><a name="a181"></a>     <span class="src-sym">{</span></li>
+<li><a name="a182"></a>        <a href="http://www.php.net/settype">settype</a><span class="src-sym">(</span><span class="src-var">$value</span><span class="src-sym">,</span><span class="src-str">'float'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a183"></a>        <a href="http://www.php.net/settype">settype</a><span class="src-sym">(</span><span class="src-var">$row</span><span class="src-sym">, </span><span class="src-str">'integer'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a184"></a>        <a href="http://www.php.net/settype">settype</a><span class="src-sym">(</span><span class="src-var">$col</span><span class="src-sym">, </span><span class="src-str">'integer'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a185"></a>&nbsp;</li>
+<li><a name="a186"></a>        <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#var$xls_data">xls_data</a> .= <a href="http://www.php.net/pack">pack</a><span class="src-sym">( </span><span class="src-str">&quot;sssss&quot;</span><span class="src-sym">, </span><span class="src-num">0x0203</span><span class="src-sym">, </span><span class="src-num">14</span><span class="src-sym">, </span><span class="src-var">$xls_row</span><span class="src-sym">, </span><span class="src-var">$xls_col</span><span class="src-sym">, </span><span class="src-num">0x00 </span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a187"></a>        <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#var$xls_data">xls_data</a> .= <a href="http://www.php.net/pack">pack</a><span class="src-sym">( </span><span class="src-str">&quot;d&quot;</span><span class="src-sym">, </span><span class="src-var">$value </span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a188"></a>     <span class="src-sym">}</span></li>
+<li><a name="a189"></a>&nbsp;</li>
+<li><a name="a190"></a>    <span class="src-doc">/**</span></li>
+<li><a name="a191"></a><span class="src-doc">    * </span><span class="src-doc-tag">@desc</span><span class="src-doc"> Writes a string value to a cell in the in-memory file</span></li>
+<li><a name="a192"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@access</span><span class="src-doc"> public</span></li>
+<li><a name="a193"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@param </span><span class="src-doc-type">int </span><span class="src-doc-var">$xls_row </span><span class="src-doc">Spreadsheet row (zero-based)</span></li>
+<li><a name="a194"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@param </span><span class="src-doc-type">int </span><span class="src-doc-var">$xls_col </span><span class="src-doc">Spreadsheet column (zero-based)</span></li>
+<li><a name="a195"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@param </span><span class="src-doc-type">float </span><span class="src-doc-var">$value </span><span class="src-doc">Cell value</span></li>
+<li><a name="a196"></a><span class="src-doc">    */</span></li>
+<li><a name="a197"></a>     <span class="src-key">function </span><a href="../iam_csvdump/IAM_XLS.html#methodWriteCellText">WriteCellText</a><span class="src-sym">( </span><span class="src-var">$xls_row</span><span class="src-sym">, </span><span class="src-var">$xls_col</span><span class="src-sym">, </span><span class="src-var">$value </span><span class="src-sym">)</span></li>
+<li><a name="a198"></a>     <span class="src-sym">{</span></li>
+<li><a name="a199"></a>          <a href="http://www.php.net/settype">settype</a><span class="src-sym">(</span><span class="src-var">$value</span><span class="src-sym">,</span><span class="src-str">'string'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a200"></a>          <a href="http://www.php.net/settype">settype</a><span class="src-sym">(</span><span class="src-var">$row</span><span class="src-sym">, </span><span class="src-str">'integer'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a201"></a>          <a href="http://www.php.net/settype">settype</a><span class="src-sym">(</span><span class="src-var">$col</span><span class="src-sym">, </span><span class="src-str">'integer'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a202"></a>&nbsp;</li>
+<li><a name="a203"></a>          <span class="src-var">$len </span>= <a href="http://www.php.net/strlen">strlen</a><span class="src-sym">( </span><span class="src-var">$value </span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a204"></a>          <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#var$xls_data">xls_data</a> .= <a href="http://www.php.net/pack">pack</a><span class="src-sym">( </span><span class="src-str">&quot;s*&quot;</span><span class="src-sym">, </span><span class="src-num">0x0204</span><span class="src-sym">, </span><span class="src-num">8 </span>+ <span class="src-var">$len</span><span class="src-sym">, </span><span class="src-var">$xls_row</span><span class="src-sym">, </span><span class="src-var">$xls_col</span><span class="src-sym">, </span><span class="src-num">0x00</span><span class="src-sym">, </span><span class="src-var">$len </span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a205"></a>          <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#var$xls_data">xls_data</a> .= <span class="src-var">$value</span><span class="src-sym">;</span></li>
+<li><a name="a206"></a>     <span class="src-sym">}</span></li>
+<li><a name="a207"></a>&nbsp;</li>
+<li><a name="a208"></a>&nbsp;</li>
+<li><a name="a209"></a>    <span class="src-doc">/**</span></li>
+<li><a name="a210"></a><span class="src-doc">    * </span><span class="src-doc-tag">@desc</span><span class="src-doc"> Connects to a MYSQL Server and select the given Database</span></li>
+<li><a name="a211"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@access</span><span class="src-doc"> private</span></li>
+<li><a name="a212"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@param </span><span class="src-doc"> </span><span class="src-doc-type">String </span><span class="src-doc-var">$dbname </span><span class="src-doc">Name of the Database</span></li>
+<li><a name="a213"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@param </span><span class="src-doc"> </span><span class="src-doc-type">String </span><span class="src-doc-var">$user </span><span class="src-doc">User to Access the Database</span></li>
+<li><a name="a214"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@param </span><span class="src-doc"> </span><span class="src-doc-type">String </span><span class="src-doc-var">$password </span><span class="src-doc">Password to Access the Database</span></li>
+<li><a name="a215"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@param </span><span class="src-doc"> </span><span class="src-doc-type">String </span><span class="src-doc-var">$host </span><span class="src-doc">Name of the Host holding the DB</span></li>
+<li><a name="a216"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@return </span><span class="src-doc-type">resource </span><span class="src-doc">if connection was successful | FALSE</span></li>
+<li><a name="a217"></a><span class="src-doc">    */</span></li>
+<li><a name="a218"></a>    <span class="src-key">function </span><a href="../iam_csvdump/IAM_XLS.html#method_db_connect">_db_connect</a><span class="src-sym">(</span><span class="src-var">$dbname</span>=<span class="src-str">&quot;mysql&quot;</span><span class="src-sym">, </span><span class="src-var">$user</span>=<span class="src-str">&quot;root&quot;</span><span class="src-sym">, </span><span class="src-var">$password</span>=<span class="src-str">&quot;&quot;</span><span class="src-sym">, </span><span class="src-var">$host</span>=<span class="src-str">&quot;localhost&quot;</span><span class="src-sym">)</span></li>
+<li><a name="a219"></a>    <span class="src-sym">{</span></li>
+<li><a name="a220"></a>      <span class="src-var">$result </span>= <span class="src-sym">@</span><a href="http://www.php.net/mysql_pconnect">mysql_pconnect</a><span class="src-sym">(</span><span class="src-var">$host</span><span class="src-sym">, </span><span class="src-var">$user</span><span class="src-sym">, </span><span class="src-var">$password</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a221"></a>      <span class="src-key">if</span><span class="src-sym">(</span><span class="src-sym">!</span><span class="src-var">$result</span><span class="src-sym">)     </span><span class="src-comm">// If no connection, return 0</span></li>
+<li><a name="a222"></a>      <span class="src-sym">{</span></li>
+<li><a name="a223"></a>       <span class="src-key">return </span><span class="src-id">false</span><span class="src-sym">;</span></li>
+<li><a name="a224"></a>      <span class="src-sym">}</span></li>
+<li><a name="a225"></a>&nbsp;</li>
+<li><a name="a226"></a>      <span class="src-key">if</span><span class="src-sym">(</span><span class="src-sym">!</span><span class="src-sym">@</span><a href="http://www.php.net/mysql_select_db">mysql_select_db</a><span class="src-sym">(</span><span class="src-var">$dbname</span><span class="src-sym">))  </span><span class="src-comm">// If db not set, return 0</span></li>
+<li><a name="a227"></a>      <span class="src-sym">{</span></li>
+<li><a name="a228"></a>       <span class="src-key">return </span><span class="src-id">false</span><span class="src-sym">;</span></li>
+<li><a name="a229"></a>      <span class="src-sym">}</span></li>
+<li><a name="a230"></a>      <span class="src-key">return </span><span class="src-var">$result</span><span class="src-sym">;</span></li>
+<li><a name="a231"></a>    <span class="src-sym">}</span></li>
+<li><a name="a232"></a>&nbsp;</li>
+<li><a name="a233"></a>    <span class="src-doc">/**</span></li>
+<li><a name="a234"></a><span class="src-doc">    * </span><span class="src-doc-tag">@desc</span><span class="src-doc"> Define the client's browser type</span></li>
+<li><a name="a235"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@access</span><span class="src-doc"> private</span></li>
+<li><a name="a236"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@return </span><span class="src-doc-type">String </span><span class="src-doc">A String containing the Browser's type or brand</span></li>
+<li><a name="a237"></a><span class="src-doc">    */</span></li>
+<li><a name="a238"></a>    <span class="src-key">function </span><a href="../iam_csvdump/IAM_XLS.html#method_get_browser_type">_get_browser_type</a><span class="src-sym">(</span><span class="src-sym">)</span></li>
+<li><a name="a239"></a>    <span class="src-sym">{</span></li>
+<li><a name="a240"></a>        <span class="src-var">$USER_BROWSER_AGENT</span>=<span class="src-str">&quot;&quot;</span><span class="src-sym">;</span></li>
+<li><a name="a241"></a>&nbsp;</li>
+<li><a name="a242"></a>        <span class="src-key">if </span><span class="src-sym">(</span><a href="http://www.php.net/ereg">ereg</a><span class="src-sym">(</span><span class="src-str">'OPERA(/| )([0-9].[0-9]{1,2})'</span><span class="src-sym">, </span><a href="http://www.php.net/strtoupper">strtoupper</a><span class="src-sym">(</span><span class="src-var">$_SERVER</span><span class="src-sym">[</span><span class="src-str">&quot;HTTP_USER_AGENT&quot;</span><span class="src-sym">]</span><span class="src-sym">)</span><span class="src-sym">, </span><span class="src-var">$log_version</span><span class="src-sym">))</span></li>
+<li><a name="a243"></a>        <span class="src-sym">{</span></li>
+<li><a name="a244"></a>            <span class="src-var">$USER_BROWSER_AGENT</span>=<span class="src-str">'OPERA'</span><span class="src-sym">;</span></li>
+<li><a name="a245"></a>        <span class="src-sym">}</span></li>
+<li><a name="a246"></a>        <span class="src-key">else </span><span class="src-key">if </span><span class="src-sym">(</span><a href="http://www.php.net/ereg">ereg</a><span class="src-sym">(</span><span class="src-str">'MSIE ([0-9].[0-9]{1,2})'</span><span class="src-sym">,</span><a href="http://www.php.net/strtoupper">strtoupper</a><span class="src-sym">(</span><span class="src-var">$_SERVER</span><span class="src-sym">[</span><span class="src-str">&quot;HTTP_USER_AGENT&quot;</span><span class="src-sym">]</span><span class="src-sym">)</span><span class="src-sym">, </span><span class="src-var">$log_version</span><span class="src-sym">))</span></li>
+<li><a name="a247"></a>        <span class="src-sym">{</span></li>
+<li><a name="a248"></a>            <span class="src-var">$USER_BROWSER_AGENT</span>=<span class="src-str">'IE'</span><span class="src-sym">;</span></li>
+<li><a name="a249"></a>        <span class="src-sym">}</span></li>
+<li><a name="a250"></a>        <span class="src-key">else </span><span class="src-key">if </span><span class="src-sym">(</span><a href="http://www.php.net/ereg">ereg</a><span class="src-sym">(</span><span class="src-str">'OMNIWEB/([0-9].[0-9]{1,2})'</span><span class="src-sym">, </span><a href="http://www.php.net/strtoupper">strtoupper</a><span class="src-sym">(</span><span class="src-var">$_SERVER</span><span class="src-sym">[</span><span class="src-str">&quot;HTTP_USER_AGENT&quot;</span><span class="src-sym">]</span><span class="src-sym">)</span><span class="src-sym">, </span><span class="src-var">$log_version</span><span class="src-sym">))</span></li>
+<li><a name="a251"></a>        <span class="src-sym">{</span></li>
+<li><a name="a252"></a>            <span class="src-var">$USER_BROWSER_AGENT</span>=<span class="src-str">'OMNIWEB'</span><span class="src-sym">;</span></li>
+<li><a name="a253"></a>        <span class="src-sym">}</span></li>
+<li><a name="a254"></a>        <span class="src-key">else </span><span class="src-key">if </span><span class="src-sym">(</span><a href="http://www.php.net/ereg">ereg</a><span class="src-sym">(</span><span class="src-str">'MOZILLA/([0-9].[0-9]{1,2})'</span><span class="src-sym">, </span><a href="http://www.php.net/strtoupper">strtoupper</a><span class="src-sym">(</span><span class="src-var">$_SERVER</span><span class="src-sym">[</span><span class="src-str">&quot;HTTP_USER_AGENT&quot;</span><span class="src-sym">]</span><span class="src-sym">)</span><span class="src-sym">, </span><span class="src-var">$log_version</span><span class="src-sym">))</span></li>
+<li><a name="a255"></a>        <span class="src-sym">{</span></li>
+<li><a name="a256"></a>            <span class="src-var">$USER_BROWSER_AGENT</span>=<span class="src-str">'MOZILLA'</span><span class="src-sym">;</span></li>
+<li><a name="a257"></a>        <span class="src-sym">}</span></li>
+<li><a name="a258"></a>        <span class="src-key">else </span><span class="src-key">if </span><span class="src-sym">(</span><a href="http://www.php.net/ereg">ereg</a><span class="src-sym">(</span><span class="src-str">'KONQUEROR/([0-9].[0-9]{1,2})'</span><span class="src-sym">, </span><a href="http://www.php.net/strtoupper">strtoupper</a><span class="src-sym">(</span><span class="src-var">$_SERVER</span><span class="src-sym">[</span><span class="src-str">&quot;HTTP_USER_AGENT&quot;</span><span class="src-sym">]</span><span class="src-sym">)</span><span class="src-sym">, </span><span class="src-var">$log_version</span><span class="src-sym">))</span></li>
+<li><a name="a259"></a>        <span class="src-sym">{</span></li>
+<li><a name="a260"></a>            <span class="src-var">$USER_BROWSER_AGENT</span>=<span class="src-str">'KONQUEROR'</span><span class="src-sym">;</span></li>
+<li><a name="a261"></a>        <span class="src-sym">}</span></li>
+<li><a name="a262"></a>        <span class="src-key">else</span></li>
+<li><a name="a263"></a>        <span class="src-sym">{</span></li>
+<li><a name="a264"></a>            <span class="src-var">$USER_BROWSER_AGENT</span>=<span class="src-str">'OTHER'</span><span class="src-sym">;</span></li>
+<li><a name="a265"></a>        <span class="src-sym">}</span></li>
+<li><a name="a266"></a>&nbsp;</li>
+<li><a name="a267"></a>        <span class="src-key">return </span><span class="src-var">$USER_BROWSER_AGENT</span><span class="src-sym">;</span></li>
+<li><a name="a268"></a>    <span class="src-sym">}</span></li>
+<li><a name="a269"></a>&nbsp;</li>
+<li><a name="a270"></a>    <span class="src-doc">/**</span></li>
+<li><a name="a271"></a><span class="src-doc">    * </span><span class="src-doc-tag">@desc</span><span class="src-doc"> Define MIME-TYPE according to target Browser</span></li>
+<li><a name="a272"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@access</span><span class="src-doc"> private</span></li>
+<li><a name="a273"></a><span class="src-doc">    * </span><span class="src-doc-coretag">@return </span><span class="src-doc-type">String </span><span class="src-doc">A string containing the MIME-TYPE String corresponding to the client's browser</span></li>
+<li><a name="a274"></a><span class="src-doc">    */</span></li>
+<li><a name="a275"></a>    <span class="src-key">function </span><a href="../iam_csvdump/IAM_XLS.html#method_get_mime_type">_get_mime_type</a><span class="src-sym">(</span><span class="src-sym">)</span></li>
+<li><a name="a276"></a>    <span class="src-sym">{</span></li>
+<li><a name="a277"></a>        <span class="src-var">$USER_BROWSER_AGENT</span>= <span class="src-var">$this</span><span class="src-sym">-&gt;</span><a href="../iam_csvdump/IAM_XLS.html#method_get_browser_type">_get_browser_type</a><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a278"></a>&nbsp;</li>
+<li><a name="a279"></a>        <span class="src-var">$mime_type </span>= <span class="src-sym">(</span><span class="src-var">$USER_BROWSER_AGENT </span>== <span class="src-str">'IE' </span>|| <span class="src-var">$USER_BROWSER_AGENT </span>== <span class="src-str">'OPERA'</span><span class="src-sym">)</span></li>
+<li><a name="a280"></a>                       ? <span class="src-str">'application/octetstream'</span></li>
+<li><a name="a281"></a>                       : <span class="src-str">'application/octet-stream'</span><span class="src-sym">;</span></li>
+<li><a name="a282"></a>        <span class="src-key">return </span><span class="src-var">$mime_type</span><span class="src-sym">;</span></li>
+<li><a name="a283"></a>    <span class="src-sym">}</span></li>
+<li><a name="a284"></a>&nbsp;</li>
+<li><a name="a285"></a><span class="src-sym">}</span></li>
+<li><a name="a286"></a>&nbsp;</li>
+<li><a name="a287"></a><span class="src-php">?&gt;</span></li>
+</ol></pre>
+</div>
+	<p class="notes" id="credit">
+		Documentation generated on Wed, 12 May 2004 12:34:51 -0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.3.0RC3</a>
+	</p>
+	</body>
+</html>

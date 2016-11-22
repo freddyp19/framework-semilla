@@ -1,0 +1,9 @@
+(listo) que al crear el archivo config documento crel el error reportin 
+(listo) que el layaut del archivo pueda darle salir del sistema
+poder escribir el prefijo de las tablas
+poder escribir el prefijo de los campos relacionales entre tablas
+(listo) quitar las columnas del layout de bootrasp del lado derecho y del izquierdo
+
+cambio de menus a estilo wordpress
+	http://davicotico.com/menu-multinivel-php-mysql-bootstrap/
+	http://jumnuoy.blogspot.com/2015/03/drag-and-drop-nestable-menu-on-php-and.html

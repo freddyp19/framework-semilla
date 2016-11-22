@@ -1,0 +1,5 @@
+framework: semilla
+version: 3.5
+creador: freddy peñalver
+correo: freddyp19@gmail.com
+colaboradores: Richard Vanegas, Guzbeny Ramirez, Rafael Gonzalez, Edgar Silva

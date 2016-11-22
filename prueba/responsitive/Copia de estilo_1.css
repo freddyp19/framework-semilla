@@ -1,0 +1,66 @@
+@media screen and (max-width: 782px) {
+
+.form-table {
+    box-sizing: border-box;
+}
+.form-table td, .form-table th {
+    display: block;
+    vertical-align: middle;
+    width: auto;
+}
+.form-table .color-palette td {
+    display: table-cell;
+    width: 15px;
+}
+/*
+.form-table table.color-palette {
+    margin-right: 10px;
+}
+*/
+
+.form-table textarea, .form-table span.description, .form-table td input[type="password"], .form-table td input[type="text"], .form-table td select, .form-table td textarea {
+    box-sizing: border-box;
+    display: block;
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: none;
+    padding: 7px 10px;
+    width: 100%;
+}
+
+
+.form-table input.small-text[type="text"], input.small-text[type="number"], input.small-text[type="password"], input.small-text[type="search"], input.small-text[type="text"] {
+    display: inline;
+    margin: 0 3px;
+    max-width: 55px;
+    padding: 3px 6px;
+    width: auto;
+}
+
+/*
+.form-table span.description {
+    line-height: 1.4em;
+    padding: 4px 0 0;
+}
+*/
+.form-table th {
+    border-bottom: 0 none;
+    padding-bottom: 0;
+    padding-top: 10px;
+}
+.form-table td {
+    padding-left: 0;
+    padding-top: 8px;
+}
+.form-table input.regular-text {
+    width: 100%;
+}
+.form-table label {
+    font-size: 14px;
+}
+.form-table fieldset label {
+    display: block;
+}
+
+}
+
